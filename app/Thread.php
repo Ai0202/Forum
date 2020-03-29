@@ -10,4 +10,19 @@ class Thread extends Model
     {
         return '/threads/' . $this->id;
     }
+
+    public function addReply($reply)
+    {
+        $this->replies()->create($reply);
+    }
+
+    public function replies()
+    {
+        return $this->hasMany(Reply::class);
+    }
+
+    public function creator()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
 }
