@@ -25,5 +25,22 @@
         @endforeach
     </div>
 
+
+    <div class="row mt-3 justify-content-center">
+        <div class="col-md-8">
+            @if (Auth::check())
+                <form action="{{ route('reply.store', ['thread' => $thread->id]) }}" method="POST">
+                    @csrf
+                    <div class="form-group">
+                        <textarea name="body" id="" cols="30" rows="10" class="form-control"></textarea>
+                    </div>
+                    <button type="submit">投稿</button>
+                </form>
+            @else
+                Plese <a href="{{ route('login') }}">signin</a>
+            @endif
+        </div>
+    </div>
+
 </div>
 @endsection
