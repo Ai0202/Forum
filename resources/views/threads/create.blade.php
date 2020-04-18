@@ -12,6 +12,17 @@
                 <div class="card-body">
                     <form method="POST" action="{{ route('threads.store')}}">
                         @csrf
+
+                        <div class="form-group">
+                            <label for="channel_id"></label>
+                            <select name="channel_id" id="channel_id" class="form-control">
+                                <option value="">Choose One...</option>
+                                @foreach (App\Channel::all() as $channel)
+                                    <option value="{{ $channel->id }}" {{ old('channel_id') == $channel->id ? 'selected' : '' }} >{{ $channel->name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+
                         <div class="form-group">
                             <input type="text" name="title" class="form-control">
                         </div>

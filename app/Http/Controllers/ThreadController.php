@@ -60,7 +60,7 @@ class ThreadController extends Controller
             'user_id' => \Auth::id(),
         ]);
 
-        return redirect(route('threads.index'));
+        return redirect(route('threads.index', ['channel' => Channel::find($request->channel_id)->slug]));
     }
 
     /**
