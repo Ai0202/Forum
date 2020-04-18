@@ -2,6 +2,7 @@
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 
+use App\Channel;
 use App\Model;
 use App\Thread;
 use App\User;
@@ -12,5 +13,6 @@ $factory->define(Thread::class, function (Faker $faker) {
         'title' => $faker->sentence(),
         'body' => $faker->paragraph(),
         'user_id' => factory(User::class)->create()->id,
+        'channel_id' => factory(Channel::class)->create()->id,
     ];
 });

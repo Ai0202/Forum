@@ -26,6 +26,21 @@
                 <a class="navbar-brand" href="{{ url('/') }}">
                     {{ config('app.name', 'Laravel') }}
                 </a>
+                <div class="collapse navbar-collapse" id="app-navbar-collapse">
+                    <ul class="nav navbar-nav">
+                        <li><a class="nav-link" href="{{ url('threads') }}">All Threads</a></li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                All Channels
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                @foreach (App\Channel::all() as $channel)
+                                <a class="dropdown-item" href="{{ route('threads.index', ['channel' => $channel->slug]) }}">{{ $channel->name }}</a>
+                                @endforeach
+                            </div>
+                        </li>
+                    </ul>
+                </div>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
                 </button>
