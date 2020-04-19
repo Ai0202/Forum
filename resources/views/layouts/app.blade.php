@@ -29,18 +29,32 @@
                 <div class="collapse navbar-collapse" id="app-navbar-collapse">
                     <ul class="nav navbar-nav">
                         <li><a class="nav-link" href="{{ route('threads') }}">All Threads</a></li>
+
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Browse
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="{{ route('threads') }}">All Threads</a></li>
+                                @if(auth()->check())
+                                    <li><a class="dropdown-item" href="{{ url('threads') . '?by=' . auth()->user()->name }}">My Threads</a></li>
+                                @endif
+                            </ul>
+                        </li>
+
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 All Channels
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                 @foreach ($channels as $channel)
-                                <a class="dropdown-item" href="{{ route('threads.index', ['channel' => $channel->slug]) }}">{{ $channel->name }}</a>
+                                    <a class="dropdown-item" href="{{ route('threads.index', ['channel' => $channel->slug]) }}">{{ $channel->name }}</a>
                                 @endforeach
                             </div>
                         </li>
+
                         <li>
-                            <a class="nav-link" href="{{ route('threads.create') }}">create</a>
+                            <a class="nav-link" href="{{ route('threads.create') }}">New Thread</a>
                         </li>
                     </ul>
                 </div>

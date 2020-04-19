@@ -24,6 +24,9 @@ class ViewServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        \View::share('channels', Channel::all());
+        // \View::share('channels', Channel::all());
+        view()->composer('*', function ($view) {
+            $view->with('channels', Channel::all());
+        });
     }
 }
